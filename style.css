@@ -144,6 +144,14 @@ span {
     .left-pane {
         flex: 1;
     }
+    
+    .column {
+        margin: 10px;
+        padding: 5px;
+        float: left;
+        width: 25%;
+        border: 2px dashed #676767;
+      }
 }
 
 @media (max-width: 599px) {
@@ -159,6 +167,13 @@ span {
         width: 100%;
         background-size: 15px 1px; /* Adjust 15px to control dash spacing */
     }
+    .column {
+        margin: 5px;
+        padding: 40px;
+        float: left;
+        width: 50%;
+        border: 2px dashed #676767;
+      }
 }
 
 
@@ -218,14 +233,6 @@ pre {
   
   .copy-button:hover {
     color: #000;
-  }
-
-  .column {
-    margin: 10px;
-    padding: 5px;
-    float: left;
-    width: 25%;
-    border: 2px dashed #676767;
   }
 
   /* Clear floats after the columns */
