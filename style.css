@@ -219,3 +219,22 @@ pre {
   .copy-button:hover {
     color: #000;
   }
+
+  .column {
+    margin: 20px;
+    padding: 20px;
+    float: left;
+    width: 25%;
+    border: 2px dashed #676767;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .subs {
+    font-size: 15px;
+  }
