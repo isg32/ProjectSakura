@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Sakura | Downloads</title>
+    <link rel="stylesheet" href="style.css"> <!-- Assuming you have a separate CSS file -->
+    <link rel="icon" href="logo/icon.jpg" type="image/jpeg"> <!-- Corrected image type -->
+</head>
+<body>
+    <div class="container">
+        <div class="left-pane">
+            <br>
+            <ul>
+                <a href="index.html"><h3> < </h3></a>
+                <h1 class="dname"> Devices :</h1>
+                <br>
+                <div onclick="showContent('Device')" id="device-names"></div>
+            </ul>
+        </div>
+        <div class="right-pane">
+            <div id="Device" class="content" style="display:none;">
+                <div class="dropdown-cards" id="deviceDownloads">
+                    <div id="device-details" class="device-dells">
+                            <div id="device-details-content"></div>
+                        </div>
+                    </div>
+                    <div id="device-dells"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showContent(contentId) {
+            var contents = document.querySelectorAll('.content');
+            contents.forEach(function(content) {
+                content.style.display = 'none';
+            });
+            document.getElementById(contentId).style.display = 'block';
+        }
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const url = 'https://raw.githubusercontent.com/ProjectSakura/OTA/14/devices.json';
+    
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const devices = data;
+                    const names = document.getElementById('device-names');
+                    const dells = document.getElementById('device-dells');
+    
+                    devices.forEach(device => {
+                        const card = document.createElement('li');
+                        card.className = 'card';
+                        card.textContent = device.name + " (" + device.codename + ")";
+    
+                        card.addEventListener('click', () => {
+                            fetch(`https://raw.githubusercontent.com/ProjectSakura/OTA/14/website/${device.codename}.json`)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error(`HTTP error! status: ${response.status}`);
+                                    }
+                                    return response.json();
+                                })
+                                .then(deviceData => {
+                                    dells.innerHTML = `
+                                            <h1 class="dname">${device.name}</h1>
+                                            <br><p>Codename: ${device.codename}<br>
+                                                Maintainer: <span class=blue>@${device.maintainer_name}</span><br>
+                                                Latest Version: ${deviceData.response[0].version}<br>
+                                                Active: ${device.active}<br>
+                                                    </p>
+                                            <div class="intentpad"><div class="dotbox">
+                                            <p>${deviceData.response[0].filename}<br>
+                                            <br>Version: ${deviceData.response[0].version}<br>
+                                            Build Type: ${deviceData.response[0].romtype}<br>
+                                            MD5: ${deviceData.response[0].id}<br>
+                                            Size: ${deviceData.response[0].size}_KB<br>
+                                            Support: <a href="https://t.me/${deviceData.response[0].support}">Telegram</a></p><br>
+                                            <a class="button" href='${deviceData.response[0].url}'>Download</a></div></div>
+                                    `;
+                                })
+                                .catch(error => console.error('Error fetching device details:', error));
+                        });
+    
+                        names.appendChild(card);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+    
+</body>
+</html>
