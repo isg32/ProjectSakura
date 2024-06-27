@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: rgb(227, 227, 227);
+}
+
+h1 {
+    color: white;
+}
+
+span {
+    color: rgb(121, 121, 121);
+}
+    
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-pane {
+    flex: 1;
+    padding: 20px;
+    position: relative;
+}
+
+.left-pane::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 2px;
+    background-image: linear-gradient(rgb(84, 84, 84) 50%, transparent 0%);
+    background-size: 1px 30px; /* Adjust 30px to control dash spacing */
+}
+
+.left-pane ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.left-pane li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.right-pane {
+    flex: 3;
+    padding: 20px;
+}
+
+.content {
+    display: none;
+    padding: 50px;
+}
+
+.content:first-of-its-kind {
+    display: block;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+}
+
+.slide {
+    display: none;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}

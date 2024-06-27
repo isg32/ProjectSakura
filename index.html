@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Sakura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-pane">
+            <h1>Project-Sakura</h1>
+            <br>
+            <ul>
+                <li onclick="showContent('Screenshots')"><span>>></span><br> Screenshots</li>
+                <li onclick="showContent('Features')"><span>>></span><br> Features</li>
+                <li onclick="showContent('Source')"><span>>></span><br> Source</li>
+                <li onclick="showContent('Official')"><span>>></span><br> Apply for Official</li>
+            </ul>
+            <ul>
+                <span>
+                <br><p><h3>Downloads --> [here]</h3>
+                <h3>Documentation --> [here]</h3>
+                <h3>Blog --> [here]</h3></p>
+                </span>    
+            </ul>
+        </div>
+        <div class="right-pane">
+            <div id="Screenshots" class="content">
+                <div class="slideshow-container">
+                    <div class="slide fade">
+                        <img src="1.jpg" style="width:100%">
+                    </div>
+                    <div class="slide fade" style="display:none;">
+                        <img src="2.jpg" style="width:100%">
+                    </div>
+                    <div class="slide fade" style="display:none;">
+                        <img src="3.jpg" style="width:100%">
+                    </div>
+                </div>
+            </div>
+            <div id="Features" class="content" style="display:none;">Content for Features</div>
+            <div id="Source" class="content" style="display:none;">Content for Source</div>
+            <div id="Official" class="content" style="display:none;">Content for Official</div>
+        </div>
+    </div>
+
+    <script>
+        function showContent(contentId) {
+            var contents = document.querySelectorAll('.content');
+            contents.forEach(function(content) {
+                content.style.display = 'none';
+            });
+            document.getElementById(contentId).style.display = 'block';
+        }
+
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var slides = document.getElementsByClassName("slide");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+    </script>
+</body>
+</html>
