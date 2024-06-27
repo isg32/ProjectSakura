@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="left-pane">
-            <h1>Project-Sakura</h1>
+            <a href=""><img src="logo/logo.png" alt="ProjectSakura Logo" class="Sakuralogo"></a>
             <br>
             <ul>
                 <li onclick="showContent('Screenshots')"><span>>></span><br> Screenshots</li>
@@ -19,9 +19,9 @@
             </ul>
             <ul>
                 <span>
-                <br><p><h3>Downloads --> [here]</h3>
-                <h3>Documentation --> [here]</h3>
-                <h3>Blog --> [here]</h3></p>
+                <br><p><h3>Downloads --> <a href="">[here]</a></h3>
+                <h3>Documentation --> <a href="">[here]</a></h3>
+                <h3>Blog --> <a href="">[here]</a></h3></p>
                 </span>    
             </ul>
         </div>
@@ -29,14 +29,15 @@
             <div id="Screenshots" class="content">
                 <div class="slideshow-container">
                     <div class="slide fade">
-                        <img src="1.jpg" style="width:100%">
+                        <img src="screenshots/1.jpg" class="responsive-img">
                     </div>
-                    <div class="slide fade" style="display:none;">
-                        <img src="2.jpg" style="width:100%">
+                    <div class="slide fade">
+                        <img src="screenshots/2.jpg" class="responsive-img">
                     </div>
-                    <div class="slide fade" style="display:none;">
-                        <img src="3.jpg" style="width:100%">
+                    <div class="slide fade">
+                        <img src="screenshots/3.jpg" class="responsive-img">
                     </div>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
             </div>
             <div id="Features" class="content" style="display:none;">Content for Features</div>
@@ -53,22 +54,35 @@
             });
             document.getElementById(contentId).style.display = 'block';
         }
-
-        var slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
+    
+        var slideIndex = 1;
+        showSlides(slideIndex);
+    
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+    
+        function showSlides(n) {
             var slides = document.getElementsByClassName("slide");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
             for (var i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
             slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 3000); // Change image every 3 seconds
         }
+    
+        window.addEventListener('resize', adjustImageHeight);
+    
+        function adjustImageHeight() {
+            var slides = document.querySelectorAll('.responsive-img');
+            slides.forEach(function(slide) {
+                slide.style.height = window.innerHeight * 0.8 + 'px'; // 80% of the viewport height
+            });
+        }
+    
+        adjustImageHeight(); // Initial call
     </script>
+    
 </body>
 </html>
