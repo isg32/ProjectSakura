@@ -186,9 +186,36 @@ span {
 }
   
   .dname {
-    font-size: 60px;
+    font-size: 50px;
   }
 
 .blue {
     color: #347ddc;
 }
+
+/* Code copy snippet */
+pre {
+    position: relative;
+    background: #373737;
+    padding: 10px;
+    font-size: 15px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    border: 1px dashed #e6e7e9;
+    max-width: 500px;
+  }
+  
+  .copy-button {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    cursor: pointer;
+    color: #fff;
+    background: gray;
+    border-radius: 0.5em;
+    padding: 2px 7px;
+  }
+  
+  .copy-button:hover {
+    color: #000;
+  }
