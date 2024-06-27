@@ -13,10 +13,10 @@
             <a href=""><img src="logo/logo.png" alt="ProjectSakura Logo" class="Sakuralogo"></a>
             <br>
             <ul>
-                <li onclick="showContent('Screenshots')"><span>>></span><br> Screenshots</li>
-                <li onclick="showContent('Features')"><span>>></span><br> Features</li>
-                <li onclick="showContent('Source')"><span>>></span><br> Source</li>
-                <li onclick="showContent('Official')"><span>>></span><br> Apply for Official</li>
+                <li onclick="showContent('Screenshots')"><span>>></span> Screenshots</li>
+                <li onclick="showContent('Features')"><span>>></span> Features</li>
+                <li onclick="showContent('Source')"><span>>></span> Source</li>
+                <li onclick="showContent('Official')"><span>>></span> Apply for Official</li>
             </ul>
             <ul>
                 <span>
@@ -49,7 +49,29 @@
             </div>
             <div id="Features" class="content" style="display:none;">Content for Features</div>
             <div id="Source" class="content" style="display:none;">Content for Source</div>
-            <div id="Official" class="content" style="display:none;">Content for Official</div>
+            <div id="Official" class="content" style="display:none;">
+                <h3>APPLY FOR PROJECT SAKURA MAINTAINERSHIP </h3>
+                In this article we will tell you how you can become an Official ProjectSakura Maintainer.
+
+                <h3>GUIDELINES</h3>
+                You don't need too many skills to be a device maintainer. Though you need to fullfill these simple guidelines.
+                <pre class="copyable">
+1. You must own the device. You can maintain the device that have minimal hardware difference and use common trees with your device. BLIND building is absolutely NOT allowed.
+
+2. You must know Basic git ( creating pull requests, properly writing commits, cherry-picking and other basic stuff).
+
+3. You must have made some contributions towards your device community instead of just taking a device tree and compiling.
+
+4. You must know how to read basic logcats.
+
+5. You must have to compile Unofficial builds before you apply for Official. Do NOT apply as soon as you built an unofficial build and instead maintain it for a period of 2 months. Applying before you have even built will lead to instant rejection and we will blacklist you in our database.
+
+6. Co-Maintaining is allowed but you cannot be a shadow maintainer for some other guy.
+                </pre>
+                You will recieve an email or Telegram message if we acknowledge your application. In some cases we may talk to you for some period of time to decide if we should accept or reject your application.
+                <h3>APPLICATION FORM</h3>
+                Once you make sure that you are fullfilling all the above guidelines, you can use the Google Form below to apply for Official maintainership.
+            </div>
         </div>
     </div>
 
@@ -61,7 +83,7 @@
             });
             document.getElementById(contentId).style.display = 'block';
         }
-    
+
         var slideIndex = 1;
         showSlides(slideIndex);
     
@@ -87,7 +109,49 @@
                 slide.style.height = window.innerHeight * 0.8 + 'px'; // 80% of the viewport height
             });
         }
-    
+                
+        // Get the <pre> element
+        const preTag = document.getElementById("copyable");
+
+        // Create a copy button element
+        const copyButton = document.createElement("span");
+        copyButton.innerText = "Copy";
+        copyButton.classList.add("copy-button");
+
+        // Append the copy button to the <pre> tag
+        preTag.appendChild(copyButton);
+
+        // Add click event listener to the copy button
+        copyButton.addEventListener("click", () => {
+        // Hide the copy button temporarily
+        copyButton.style.display = "none";
+
+        // Create a range and select the text inside the <pre> tag
+        const range = document.createRange();
+        range.selectNode(preTag);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+
+        try {
+            // Copy the selected text to the clipboard
+            document.execCommand("copy");
+
+            // Alert the user that the text has been copied
+            copyButton.innerText = "Copied!";
+            setTimeout(function(){
+            copyButton.innerText = "Copy";
+            }, 2000);
+        } catch (err) {
+            console.error("Unable to copy text:", err);
+        } finally {
+            // Show the copy button again
+            copyButton.style.display = "inline";
+
+            // Deselect the text
+            window.getSelection().removeAllRanges();
+        }
+        });
+
         adjustImageHeight(); // Initial call
     </script>
     
