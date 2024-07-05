@@ -16,6 +16,15 @@ body {
     color: rgb(227, 227, 227);
 }
 
+td {
+    padding: 5px;
+}
+
+
+th {
+    font-weight: bold;
+}
+
 p {
     color: rgb(195, 195, 195);
 }
