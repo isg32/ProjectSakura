@@ -1,3 +1,3 @@
 # Isg32's | Site Directory
 
-> Mirrot: [Vercel](https://isg32.vercel.app/)
+> If You still want to visit my old website: [Vercel](https://old-isg32.vercel.app/)
